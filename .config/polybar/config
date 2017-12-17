@@ -1,0 +1,152 @@
+; Set colors from .Xresources
+[colors]
+black       = ${xrdb:color0}
+red         = ${xrdb:color1}
+red-alt     = ${xrdb:color9}
+green       = ${xrdb:color2}
+green-alt   = ${xrdb:color10}
+yellow      = ${xrdb:color3}
+yellow-alt  = ${xrdb:color11}
+blue        = ${xrdb:color4}
+blue-alt    = ${xrdb:color12}
+magenta     = ${xrdb:color5}
+magenta-alt = ${xrdb:color13}
+cyan        = ${xrdb:color6}
+cyan-alt    = ${xrdb:color14}
+white       = ${xrdb:color7}
+white-alt   = ${xrdb:color15}
+fg          = ${colors.white}
+bg          = ${colors.black}
+
+[bar/main]
+monitor                     = eDP-1
+override-redirect           = false
+dpi                         = 220
+width                       = 100%
+height                      = 50
+offset-x                    = 0%
+offset-y                    = 0
+padding-left                = 1
+padding-right               = 1
+underline-color             = ${colors.bg}
+spacing                     = 1
+module-margin-left          = 1
+module-margin-right         = 1
+foreground                  = ${colors.fg}
+background                  = ${colors.bg}
+border-bottom-size          = 5
+border-bottom-color         = ${colors.fg}
+border-top-size             = 5
+border-top-color            = ${colors.bg}
+font-0                      = Input Mono:size=11:weight=bold;0
+font-1                      = FontAwesome:size=11:weight=bold;-2
+font-2                      = fc-match fontawesome:size=11:weight=bold;-2
+separator                   = |
+underline-size              = 0
+modules-left                = battery volume backlight i3
+modules-right               = cpu memory temperature
+modules-center              = date
+
+[module/i3]
+type                        = internal/i3
+format                      = <label-state> <label-mode>
+label-visible               = %icon%
+label-focused               = %icon%
+label-unfocused             = %icon%
+label-urgent                = %icon%
+label-visible-padding       = 1
+label-focused-padding       = 1
+label-unfocused-padding     = 1
+label-urgent-padding        = 1
+label-focused-foreground    = ${colors.blue}
+wrapping-scroll             = true
+pin-workspaces              = true
+strip-wsnumbers             = true
+index-sort                  = true
+ws-icon-1 = 1;Ⅰ
+ws-icon-2 = 2;Ⅱ
+ws-icon-3 = 3;Ⅲ
+ws-icon-4 = 4;Ⅳ
+ws-icon-5 = 5;Ⅴ
+ws-icon-6 = 6;Ⅵ
+ws-icon-7 = 7;Ⅶ
+ws-icon-8 = 8;Ⅷ
+ws-icon-9 = 9;Ⅸ
+ws-icon-0 = 0;Ⅹ
+
+[module/backlight]
+type                        = internal/backlight
+card                        = intel_backlight
+format                      = <ramp>
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+;bar-width = 10
+;bar-indicator = |
+;bar-fill = ─
+;bar-empty = ─
+
+[module/date]
+type                        = internal/date
+interval                    = 1.0
+date                        = %Y-%m-%d%
+time                        = %H:%M
+label                       = %time% | %date%
+
+[module/temperature]
+type                        = internal/temperature
+interval                    = 5.0
+thermal-zone                = 0
+hwmon-path                  = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+warn-temperature            = 60
+
+[module/battery]
+type                        = internal/battery
+full-at                     = 99
+battery                     = BAT0
+adapter                     = AC
+format-charging             = <animation-charging> <label-charging>
+format-discharging          = <ramp-capacity> <label-discharging>
+poll-interval               = 5
+ramp-capacity-0             = 
+ramp-capacity-1             = 
+ramp-capacity-2             = 
+ramp-capacity-3             = 
+ramp-capacity-4             = 
+animation-charging-0        = 
+animation-charging-1        = 
+animation-charging-2        = 
+animation-charging-3        = 
+animation-charging-4        = 
+
+[module/memory]
+type                        = internal/memory
+interval                    = 3
+format                      = <label> <bar-used>
+bar-used-fill               = ▐
+bar-used-empty              = ▐
+bar-used-width              = 10
+bar-used-indicator          =
+bar-used-foreground-0       = ${colors.fg}
+bar-used-empty-foreground   = ${colors.blue}
+
+[module/cpu]
+type                        = internal/cpu
+interval                    = 1.0
+format                      = <label> <ramp-coreload>
+label                       = %percentage%%
+ramp-coreload-0             = ▁
+ramp-coreload-1             = ▂
+ramp-coreload-2             = ▃
+ramp-coreload-3             = ▄
+ramp-coreload-4             = ▅
+ramp-coreload-5             = ▆
+ramp-coreload-6             = ▇
+ramp-coreload-7             = █
+
+[module/volume]
+type                        = internal/volume
+format-volume               = <label-volume>
+label-muted                 = muted

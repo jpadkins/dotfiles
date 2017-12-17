@@ -35,9 +35,12 @@ bindsym $mod+Return exec xfce4-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Reset polybar
+bindsym $mod+Shift+p exec $HOME/.config/polybar/launch.sh
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec zsh -c "rofi -show run -font Monaco\ 24"
+bindsym $mod+d exec zsh -c "rofi -show run -font Input\ Mono\ Compressed\ Regular\ 26"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -127,26 +130,26 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -175,7 +178,7 @@ mode "move" {
 bindsym $mod+m mode "move"
 
 # Gaps
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 gaps inner 40
 
 # Polybar
@@ -212,16 +215,19 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # Bind key to wal
-bindsym $mod+Shift+t exec "$HOME/.scripts/wal/wal -ti $HOME/Pictures/Wallpapers"
-exec "$HOME/.scripts/wal/wal -ti $HOME/Pictures/Wallpapers"
+bindsym $mod+Shift+t exec zsh -c "wal -ti $HOME/Pictures/Wallpapers"
+exec zsh -c "wal -ti $HOME/Pictures/Wallpapers"
 
 # Audio Controls
 bindsym XF86AudioRaiseVolume 	exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume 	exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute 				exec amixer -q set Master toggle
+bindsym XF86AudioMute 	        exec amixer -q set Master toggle
+bindsym XF86AudioPrev           exec mpc prev
+bindsym XF86AudioNext           exec mpc next
+bindsym XF86AudioPlay           exec $HOME/.scripts/mpc_toggle.sh
 
 # Backlight Controls
-bindsym XF86MonBrightnessUp	exec light -A 5
+bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown	exec light -U 5
 
 # Screenshots
@@ -229,5 +235,8 @@ bindsym Print exec scrot -e 'mv $f /home/jpadkins/Pictures/Screenshots'
 bindsym --release $mod+Print exec scrot -s -e 'mv $f /home/jpadkins/Pictures/Screenshots'
 
 # Commands to execute at startup
+exec zsh -c "xrandr --output eDP-1 --panning 3840x2160"
 exec setxkbmap -option caps:escape
-exec compton
+exec gnome-settings-daemon
+exec polybar main
+exec compton -c

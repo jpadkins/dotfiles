@@ -26,19 +26,16 @@ zplug load
 #
 
 # Aliases
-alias :q='exit'
-alias rm='rmtrash'
 alias sudo='sudo '
 alias sl='sl && ls'
+alias rm='trash-put'
 alias ls='ls --color'
-alias rmdir='rmdirtrash'
+alias 4k='xrandr -s 3840x2160'
 alias re_source="source ~/.zshrc"
-alias mpc_wipe='mpc stop && mpc clear'
 alias wisdom='fortune | cowsay -f tux'
+alias fixfont='setfont latarcyrheb-sun32'
+alias re_polybar='~/.config/polybar/launch.sh'
 #
-
-# OPAM configuration
-. /home/jpadkins/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # Environment Vars
 source $HOME/.zshenv
