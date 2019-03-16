@@ -1,7 +1,7 @@
 
 ###############################################################################
 ## .zshrc
-## Jacob Adkins (jpadkins)
+## A basic and clean zshell configuration with zplug
 ###############################################################################
 
 ###############################################################################
@@ -49,9 +49,11 @@ prompt walters
 ###############################################################################
 
 alias rm='trash-put'
+#alias ls='ls --color'
 alias ls='ls --color'
 alias resrc='source $HOME/.zshrc'
 alias wisdom='fortune | cowsay -f tux'
+alias bandcamp-dl='bandcamp-dl --template="%{track}_%{title}"'
 alias rbenv_update='cd "$(rbenv root)"/plugins/ruby-build && git pull && cd -'
 
 ###############################################################################
@@ -66,3 +68,4 @@ fonts=('Bloody' '3d_diagonal' '3d' 'dietcola' 'fire_font-k' 'OS2' 	\
 figlet -w $(tput cols) -cf ${fonts[$[$RANDOM % ${#fonts[@]}] + 1]} welcome
 echo ''
 unset fonts
+
